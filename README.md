@@ -22,6 +22,7 @@ require 'utensils/factory_bot'
 require 'utensils/omniauth'
 require 'utensils/upload_macros'
 require 'utensils/json'
+require 'utensils/have_hash_matcher'
 ```
 
 ### capybara_extensions
@@ -85,4 +86,12 @@ Provides fixture_file and fixture_file_path helper pointing to spec/fixtures dir
 ```ruby
 fixture_file_path('dummy.jpg') # 'spec/fixtures/dummy.jpg'
 Photo.create(:file => fixture_file('dummy.jpg')) # attaches File spec/fixtures/dummy.jpg
+```
+
+### have_hash_matcher
+
+Matcher for checking whether a given array contains a hash that `include`s a given hash. In JS specs, waits up to `Capybara.default_max_wait_time` for the array to have a matching hash.
+
+```ruby
+expect(ActivityLogger.queue).to have_hash(event: "recipe.visit")
 ```
