@@ -55,7 +55,7 @@ RSpec::Matchers.define :have_hash do |expected|
     end
 
     def js_enabled?
-      !!page.evaluate_script("0 + 1")
+      respond_to?(:page) && !!page.evaluate_script("0 + 1")
     rescue Capybara::NotSupportedByDriverError
       false
     end
